@@ -8,19 +8,11 @@ title: "Chappie — Coder Python"
 
 {{< include ../_sections/SOUL.md >}}
 
-## Identity
-
-{{< include ../../../_globals/IDENTITY.md >}}
-
 ## User
 
 {{< include ../../../_globals/USER.md >}}
 
-## Bootstrap
 
-{{< include ../../../_globals/BOOTSTRAP.md >}}
-
-{{< include ../_sections/BOOTSTRAP.md >}}
 
 ## Tools
 

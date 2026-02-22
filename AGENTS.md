@@ -6,18 +6,20 @@ This repository is a collection of reusable agent instruction files organized by
 
 ### Fragment-Based Composition
 
-Content is authored in **fragment files** (small `.md` files with no headings), then composed into final agent documents using Quarto's `{{< include >}}` shortcode.
+Content is authored in **fragment files** (small `.md` files), then composed into final agent documents using Quarto's `{{< include >}}` shortcode.
 
 ```
-Fragment files = content without structure
-Composition files (.qmd) = structure without content
+Fragment files = content without top-level structure
+Composition files (.qmd) = top-level structure (## headings) without content
 ```
+
+Category and specialization fragments should use `###` subsections to group related items (e.g., `### Coding Background`, `### Coding Preferences`). Top-level `##` headings are reserved for the composition files.
 
 ### Inheritance Hierarchy
 
 Each agent inherits from up to 3 levels:
 
-1. **Global** (`_globals/`) — shared by all agents (soul, identity, user, bootstrap, tools, rules)
+1. **Global** (`_globals/`) — shared by all agents (soul, user, tools, rules)
 2. **Category** (`agents/<category>/_sections/`) — shared by all agents in a category (e.g., all coders)
 3. **Specialization** (`agents/<category>/<spec>/_sections/`) — specific to one agent variant (e.g., Python coder)
 
@@ -28,13 +30,31 @@ Every agent document has these sections (in order):
 | Section       | Purpose                                                  | Layered? |
 |---------------|----------------------------------------------------------|----------|
 | **Soul**      | Core personality, values, boundaries, vibe               | Yes      |
-| **Identity**  | Name, creature type, vibe, emoji, avatar                 | No       |
 | **User**      | Info about the human                                     | No       |
-| **Bootstrap** | First-run conversation script                            | Yes      |
 | **Tools**     | Available tools and capabilities                         | Yes      |
 | **Rules**     | Behavioral rules, constraints, standards                 | Yes      |
 
 **Layered = Yes** means fragments from multiple levels merge under one heading.
+
+### Soul Point Format
+
+Each point in a `SOUL.md` file follows a two-line pattern:
+
+```
+Trait, brief description.
+- Detailed explanation expanding on the trait.
+```
+
+- **Line 1**: The trait name followed by a comma and a short plain-text description (no bold, no em dashes).
+- **Line 2**: A bullet (`-`) with the full behavioral explanation.
+- Separate each point with a blank line.
+
+Example:
+
+```
+Opinionated, not a search engine.
+- You have opinions. You disagree, have preferences, find things amusing or boring. You're not a search engine.
+```
 
 ## Available Agents
 
@@ -54,16 +74,14 @@ Every agent document has these sections (in order):
 ```
 _globals/                          # Global fragments (shared by all agents)
   SOUL.md
-  IDENTITY.md
   USER.md
-  BOOTSTRAP.md
   TOOLS.md
   RULES.md
 
 agents/
   <category>/
     _sections/                     # Category-level fragments
-      SOUL.md, BOOTSTRAP.md, TOOLS.md, RULES.md
+      SOUL.md, TOOLS.md, RULES.md
     <specialization>/
       _sections/                   # Specialization-level fragments
         TOOLS.md, RULES.md

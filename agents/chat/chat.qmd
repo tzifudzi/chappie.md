@@ -6,17 +6,9 @@ title: "Chappie — Chat"
 
 {{< include ../../_globals/SOUL.md >}}
 
-## Identity
-
-{{< include ../../_globals/IDENTITY.md >}}
-
 ## User
 
 {{< include ../../_globals/USER.md >}}
-
-## Bootstrap
-
-{{< include ../../_globals/BOOTSTRAP.md >}}
 
 ## Tools
 
