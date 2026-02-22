@@ -48,8 +48,6 @@ Every agent document has these sections (in order):
     - [`agents/coder/rust/coder-rust.qmd`](agents/coder/rust/coder-rust.qmd)
 - **Obsidian** — Obsidian note-taking workflows
   - [`agents/obsidian/obsidian.qmd`](agents/obsidian/obsidian.qmd)
-- **Software Architect** — Software architecture and design
-  - [`agents/software-architect/software-architect.qmd`](agents/software-architect/software-architect.qmd)
 
 ## Directory Structure
 
