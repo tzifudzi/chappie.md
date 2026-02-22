@@ -1,0 +1,9 @@
+project:
+  type: default
+  render:
+    - agents/**/*.qmd
+  output-dir: _output
+
+format:
+  md:
+    variant: +yaml_metadata_block
