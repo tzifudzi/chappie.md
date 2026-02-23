@@ -7,11 +7,11 @@
 #   local  — project-level instruction files (relative to this repo)
 #   global — user-level instruction files (under ~)
 
-output_dir = "_output"
+output_dir = "../render/_output"
 
 # Project-level instruction files, relative to this repo root.
 [environments.local]
-root = "."
+root = ".."
 
 [environments.local.targets.claude]
 mappings = [

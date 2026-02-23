@@ -1,9 +1,7 @@
 plans/
-_output/
 
-.quarto/
+render/_output/
+render/.quarto/
 **/*.quarto_ipynb
 
-/.quarto/
-
-cli/target/
+apply/cli/target/

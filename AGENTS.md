@@ -19,9 +19,9 @@ Category and specialization fragments should use `###` subsections to group rela
 
 Each agent inherits from up to 3 levels:
 
-1. **Global** (`_globals/`) — shared by all agents (soul, user, tools, rules)
-2. **Category** (`agents/<category>/_sections/`) — shared by all agents in a category (e.g., all coders)
-3. **Specialization** (`agents/<category>/<spec>/_sections/`) — specific to one agent variant (e.g., Python coder)
+1. **Global** (`render/_globals/`) — shared by all agents (soul, user, tools, rules)
+2. **Category** (`render/agents/<category>/_sections/`) — shared by all agents in a category (e.g., all coders)
+3. **Specialization** (`render/agents/<category>/<spec>/_sections/`) — specific to one agent variant (e.g., Python coder)
 
 ### Standard Sections
 
@@ -59,52 +59,63 @@ Opinionated, not a search engine.
 ## Available Agents
 
 - **Chat** — General conversational chat
-  - [`agents/chat/chat.qmd`](agents/chat/chat.qmd)
+  - [`render/agents/chat/chat.qmd`](render/agents/chat/chat.qmd)
 - **Coder** — General coding guidelines and practices
-  - [`agents/coder/coder.qmd`](agents/coder/coder.qmd)
+  - [`render/agents/coder/coder.qmd`](render/agents/coder/coder.qmd)
   - **Python** — Python-specific coding instructions
-    - [`agents/coder/python/coder-python.qmd`](agents/coder/python/coder-python.qmd)
+    - [`render/agents/coder/python/coder-python.qmd`](render/agents/coder/python/coder-python.qmd)
   - **Rust** — Rust-specific coding instructions
-    - [`agents/coder/rust/coder-rust.qmd`](agents/coder/rust/coder-rust.qmd)
+    - [`render/agents/coder/rust/coder-rust.qmd`](render/agents/coder/rust/coder-rust.qmd)
 - **Obsidian** — Obsidian note-taking workflows
-  - [`agents/obsidian/obsidian.qmd`](agents/obsidian/obsidian.qmd)
+  - [`render/agents/obsidian/obsidian.qmd`](render/agents/obsidian/obsidian.qmd)
 
 ## Directory Structure
 
 ```
-_globals/                          # Global fragments (shared by all agents)
-  SOUL.md
-  USER.md
-  TOOLS.md
-  RULES.md
+render/                            # Generates agent .md files from fragments
+  _quarto.yml
+  Makefile
+  _globals/                        # Global fragments (shared by all agents)
+    SOUL.md, USER.md, TOOLS.md, RULES.md
+  agents/
+    <category>/
+      _sections/                   # Category-level fragments
+        SOUL.md, TOOLS.md, RULES.md
+      <specialization>/
+        _sections/                 # Specialization-level fragments
+          TOOLS.md, RULES.md
+        <name>.qmd                 # Composition file → renders to final .md
+      <name>.qmd                   # Category-level composition file
+  scripts/
+    render.py, clean.py
+  _output/                         # Rendered output (gitignored)
+    chat.md, coder.md, coder-python.md, ...
 
-agents/
-  <category>/
-    _sections/                     # Category-level fragments
-      SOUL.md, TOOLS.md, RULES.md
-    <specialization>/
-      _sections/                   # Specialization-level fragments
-        TOOLS.md, RULES.md
-      <name>.qmd                   # Composition file → renders to final .md
-    <name>.qmd                     # Category-level composition file
-
-_output/                           # Rendered output (gitignored)
-  chat.md, coder.md, coder-python.md, ...
+apply/                             # Copies rendered .md to tool-specific locations
+  chappie.toml                     # Apply configuration
+  cli/                             # Rust CLI
+    Cargo.toml
+    src/
 ```
 
 ## Building
 
 ```bash
-# Render all agents to _output/
+# Render all agents to render/_output/
+cd render
 make render
 
 # Clean output
 make clean
+
+# Apply rendered agents to local targets
+cd ../apply
+cargo run --manifest-path cli/Cargo.toml -- local
 ```
 
 ## Adding a New Agent
 
-1. Create a directory under `agents/` (e.g., `agents/writer/`)
-2. Create `agents/writer/_sections/` with fragment files (`TOOLS.md`, `RULES.md`)
-3. Create `agents/writer/writer.qmd` using the composition pattern (see existing `.qmd` files for examples)
-4. Run `make render` to build
+1. Create a directory under `render/agents/` (e.g., `render/agents/writer/`)
+2. Create `render/agents/writer/_sections/` with fragment files (`TOOLS.md`, `RULES.md`)
+3. Create `render/agents/writer/writer.qmd` using the composition pattern (see existing `.qmd` files for examples)
+4. Run `cd render && make render` to build
