@@ -5,3 +5,5 @@ _output/
 **/*.quarto_ipynb
 
 /.quarto/
+
+cli/target/

@@ -1,0 +1,79 @@
+# Chappie apply configuration.
+#
+# Defines how rendered agent markdown files map to tool-specific locations.
+# Run: cargo run --manifest-path cli/Cargo.toml -- <environment>
+#
+# Environments:
+#   local  — project-level instruction files (relative to this repo)
+#   global — user-level instruction files (under ~)
+
+output_dir = "_output"
+
+# Project-level instruction files, relative to this repo root.
+[environments.local]
+root = "."
+
+[environments.local.targets.claude]
+mappings = [
+    { source = "coder-rust.md", dest = "CLAUDE.md" },
+]
+
+[environments.local.targets.roo]
+mappings = [
+    { source = "coder-rust.md", dest = ".roo/rules-code.md" },
+]
+
+[environments.local.targets.codex]
+mappings = [
+    { source = "coder-rust.md", dest = "AGENTS.md" },
+]
+
+[environments.local.targets.opencode]
+mappings = [
+    { source = "coder-rust.md", dest = "AGENTS.md" },
+]
+
+# User-level global instruction files.
+#
+# Root "~" expands to %USERPROFILE% (Windows) or $HOME (Unix).
+# Each agent stores global instructions in a different location:
+#
+#   Claude Code  ~/.claude/CLAUDE.md
+#                https://docs.anthropic.com/en/docs/claude-code/memory
+#
+#   Roo Code     ~/.roo/rules/*.md          (all modes)
+#                ~/.roo/rules-{mode}/*.md   (mode-specific, e.g. rules-code/)
+#                https://docs.roocode.com/features/custom-rules
+#
+#   Codex CLI    ~/.codex/AGENTS.md         (fallback; AGENTS.override.md takes priority)
+#                https://developers.openai.com/codex/guides/agents-md/
+#
+#   OpenCode     ~/.config/opencode/AGENTS.md
+#                https://opencode.ai/docs/rules/
+[environments.global]
+root = "~"
+
+[environments.global.targets.claude]
+# ~/.claude/CLAUDE.md — user-level global memory
+mappings = [
+    { source = "coder-rust.md", dest = ".claude/CLAUDE.md" },
+]
+
+[environments.global.targets.roo]
+# ~/.roo/rules-code/ — mode-specific global rules (code mode)
+# Roo reads *.md files recursively from this directory.
+mappings = [
+    { source = "coder-rust.md", dest = ".roo/rules-code/coder-rust.md" },
+]
+
+[environments.global.targets.codex]
+# ~/.codex/AGENTS.md — global instructions (overridden by AGENTS.override.md if present)
+mappings = [
+    { source = "coder-rust.md", dest = ".codex/AGENTS.md" },
+]
+
+[environments.global.targets.opencode]
+# ~/.config/opencode/AGENTS.md — XDG-style global instructions
+mappings = [
+    { source = "coder-rust.md", dest = ".config/opencode/AGENTS.md" },
+]
