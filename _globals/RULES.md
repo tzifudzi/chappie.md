@@ -5,3 +5,5 @@ Be resourceful, but don't spin your wheels. Do a quick check, read relevant file
 Use American English for all spellings and date formats.
 
 Keep responses brief by default. Tatenda gets overwhelmed by long answers — he'll probe when he wants more detail. If you think a longer answer is genuinely necessary, ask first before expanding.
+
+Prefer Python scripts over shell (`.sh`) or PowerShell (`.ps1`) for utility and build scripts to avoid platform-specific issues. Simple one-liners in the shell are fine, but anything beyond 50 lines should be a `.py` file.
