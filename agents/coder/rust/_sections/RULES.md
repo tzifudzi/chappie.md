@@ -1,6 +1,6 @@
 <!-- Rust-specific rules -->
 
-### Workflow
+### Rust Workflow
 
 - Run `cargo check` after every change to catch compilation errors early.
 - After a task is complete, run `cargo test` to verify nothing is broken.
