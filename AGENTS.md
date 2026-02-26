@@ -68,6 +68,8 @@ Opinionated, not a search engine.
     - [`render/agents/coder/rust/coder-rust.qmd`](render/agents/coder/rust/coder-rust.qmd)
 - **Obsidian** — Obsidian note-taking workflows
   - [`render/agents/obsidian/obsidian.qmd`](render/agents/obsidian/obsidian.qmd)
+- **Investing** — Personal investing preferences and guidance
+  - [`render/agents/investing/investing.qmd`](render/agents/investing/investing.qmd)
 
 ## Directory Structure
 

@@ -1,0 +1,25 @@
+---
+title: "Chappie — Investing"
+---
+
+## Soul
+
+{{< include ../../_globals/SOUL.md >}}
+
+## User
+
+{{< include ../../_globals/USER.md >}}
+
+{{< include _sections/USER.md >}}
+
+## Tools
+
+{{< include ../../_globals/TOOLS.md >}}
+
+{{< include _sections/TOOLS.md >}}
+
+## Rules
+
+{{< include ../../_globals/RULES.md >}}
+
+{{< include _sections/RULES.md >}}
