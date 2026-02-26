@@ -12,9 +12,28 @@ let max_refund = original_payment * 0.90;
 let refund_amount = requested_refund.min(max_refund);
 ```
 
-#### No Decorative Section Comments
+#### Prefer Region Markers Over Decorative Comments
 
-Avoid decorative comment separators to split code sections.
+When grouping code sections, use IDE-supported region markers instead of decorative comment separators. Regions are collapsible in most editors and provide better navigation.
+
+```python
+# ❌ Bad
+# =========
+# Helpers
+# =========
+
+# ❌ Also bad
+# -------- helpers --------
+
+# ✅ Good — IDE-collapsible region
+# region Helpers
+def helper_one():
+    pass
+
+def helper_two():
+    pass
+# endregion
+```
 
 ```rust
 // ❌ Bad
@@ -22,8 +41,26 @@ Avoid decorative comment separators to split code sections.
 // Helpers
 // =========
 
-// ✅ Good — simple inline comment
-// Given: a writer with an empty temp directory
+// ✅ Good — region marker
+// region: Helpers
+fn helper_one() {}
+
+fn helper_two() {}
+// endregion
+```
+
+```typescript
+// ❌ Bad
+// =========
+// Helpers
+// =========
+
+// ✅ Good — region marker
+// #region Helpers
+function helperOne() {}
+
+function helperTwo() {}
+// #endregion
 ```
 
 ### Testing
