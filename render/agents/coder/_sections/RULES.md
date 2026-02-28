@@ -75,7 +75,15 @@ Write minimal, focused tests that verify core behavior without excessive edge-ca
 
 #### Test Naming Convention
 
-Use `given_xxx_when_xxx_then_xxx` naming. Add `// Given:`, `// When:`, and `// Expect:` section comments inside the test body.
+Use `given_xxx_when_xxx_then_xxx` naming. Long, descriptive method names are fine — clarity matters more than brevity. Add `// Given:`, `// When:`, and `// Expect:` section comments inside the test body.
+
+```rust
+// ❌ Bad — vague, no structure
+fn test_write();
+
+// ✅ Good — descriptive given/when/then
+fn given_empty_dir_when_write_called_then_creates_file();
+```
 
 ```rust
 #[test]
@@ -93,7 +101,38 @@ fn given_empty_dir_when_write_called_then_creates_file() {
 }
 ```
 
+#### Approval Before Writing Tests
+
+Before implementing unit tests, summarize which tests you plan to add and ask Tatenda for approval. List the test names or scenarios at a high level — do not include implementation details. This avoids wasting tokens on tests the human may not want.
+
+Example — after implementing a `Notifier` module:
+
+```
+❌ Bad: "I'll write a test that creates a mock SmtpClient, injects it into
+   Notifier::new(), calls send(), and asserts the mock received exactly
+   one call with subject 'Hello'."
+✅ Good: "I'll add these tests for Notifier:
+   - given_valid_recipient_when_send_then_succeeds
+   - given_empty_recipient_when_send_then_fails
+   - given_transient_error_when_send_then_retries
+   OK to proceed?"
+```
+
 ### Workflow
+
+#### Approval Before Coding
+
+Before writing or modifying any code, briefly explain the high-level plan and explicitly ask Tatenda for approval to proceed. Do not ask about low-level details (specific lines, variable names, etc.) — summarize the overall approach in a few sentences and ask for permission to proceed. If
+you proceed without permission, you risk spending tokens on an implementation plan the human does not agree with.
+
+Example — adding email notification support across multiple files:
+
+```
+❌ Bad: "Should I rename the `notify` variable on line 42 of handler.rs?"
+✅ Good: "I'll use the decorator pattern to wrap the existing Notifier with
+   an EmailNotifier that adds a send() method. This touches handler.rs,
+   notifier.rs, and the config module. OK to proceed?"
+```
 
 #### Refactoring
 
