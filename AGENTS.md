@@ -115,6 +115,31 @@ cd ../apply
 cargo run --manifest-path cli/Cargo.toml -- local
 ```
 
+## Writing Style
+
+Write statements that are concise but detailed. Every token in the rendered output costs context — less context means higher model accuracy. Cut filler and redundancy, but don't sacrifice clarity or precision.
+
+```
+❌ Bloated: "When you are working on fixing a bug, it is very important
+   that you make sure to always write a test before you start working
+   on the actual fix itself, so that you can be confident that the bug
+   is actually reproduced and that your fix addresses it correctly."
+```
+
+Short and concise:
+```
+"Run cargo check after every change to catch compilation errors early."
+```
+
+Long and concise — every word necessary:
+```
+"When fixing a bug, write a failing test before the fix. Run it to
+confirm it fails for the expected reason, then implement the fix and
+verify the test passes. This prevents fixing the wrong thing — if the
+test doesn't fail, your understanding of the bug may be wrong and you
+should reassess before touching production code."
+```
+
 ## Adding a New Agent
 
 1. Create a directory under `render/agents/` (e.g., `render/agents/writer/`)
