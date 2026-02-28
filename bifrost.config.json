@@ -1,0 +1,6 @@
+{
+    "projectName": "Chappie Markdown",
+    "description": "Agent markdown files",
+    "path": "/chappie-md",
+    "port": 8010
+}

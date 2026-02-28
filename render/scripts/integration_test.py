@@ -17,7 +17,6 @@ from typing import Any
 OUTPUT_DIR = Path("_out/md")
 TEST_OUTPUT_DIR = Path("_out/tests")
 RULES_FILE = Path("rules/integration_rules.yaml")
-REPORT_FILE = TEST_OUTPUT_DIR / "integration_test_report.md"
 JUNIT_FILE = TEST_OUTPUT_DIR / "integration_test_report.junit.xml"
 DEFAULT_MODEL = "openai/gpt-4o-mini"
 
@@ -86,8 +85,7 @@ def read_markdown_outputs(output_dir: Path) -> dict[str, str]:
             f"Output directory not found: {output_dir}. Run render first."
         )
 
-    files = sorted(output_dir.glob("*.md"))
-    markdown_files = [f for f in files if f.name != REPORT_FILE.name]
+    markdown_files = sorted(output_dir.glob("*.md"))
     if not markdown_files:
         raise ValueError(f"No markdown files found under {output_dir}")
 
@@ -233,31 +231,6 @@ def run_model_check(model: str, rules: list[Rule], markdown_files: dict[str, str
     return parse_model_json(content)
 
 
-def write_report(report_path: Path, model: str, result: dict[str, Any], dry_run: bool) -> None:
-    """Write inference output to markdown report file."""
-    report_path.parent.mkdir(parents=True, exist_ok=True)
-    timestamp = datetime.now(timezone.utc).isoformat()
-    all_passed = bool(result.get("all_rules_passed", False))
-    status = "PASSED" if all_passed else "FAILED"
-
-    body = [
-        "# Integration Test Report",
-        "",
-        f"- Timestamp (UTC): {timestamp}",
-        f"- Model: {model}",
-        f"- Dry run: {str(dry_run).lower()}",
-        f"- Result: {status}",
-        "",
-        "## Model Inference Output",
-        "",
-        "```json",
-        json.dumps(result, indent=2, ensure_ascii=False),
-        "```",
-        "",
-    ]
-    report_path.write_text("\n".join(body), encoding="utf-8")
-
-
 def write_junit_report(report_path: Path, model: str, result: dict[str, Any], dry_run: bool) -> None:
     """Write standardized JUnit XML output for CI/test tooling."""
     rules = result.get("rules", [])
@@ -351,11 +324,6 @@ def parse_args() -> argparse.Namespace:
         help="Directory containing rendered markdown outputs",
     )
     parser.add_argument(
-        "--report-file",
-        default=str(REPORT_FILE),
-        help="Path to markdown report file",
-    )
-    parser.add_argument(
         "--junit-file",
         default=str(JUNIT_FILE),
         help="Path to JUnit XML report file",
@@ -376,19 +344,15 @@ def main() -> None:
 
     raw_result = run_dry_run(rules) if args.dry_run else run_model_check(args.model, rules, markdown_files)
     result = normalize_result(raw_result, rules)
-    write_report(Path(args.report_file), args.model, result, args.dry_run)
     write_junit_report(Path(args.junit_file), args.model, result, args.dry_run)
 
     if result.get("all_rules_passed"):
-        print(
-            "Integration checks passed. "
-            f"Reports: {args.report_file}, {args.junit_file}"
-        )
+        print("Integration checks passed. " f"JUnit report: {args.junit_file}")
         return
 
     print(
         "Integration checks failed. "
-        f"Reports: {args.report_file}, {args.junit_file}",
+        f"JUnit report: {args.junit_file}",
         file=sys.stderr,
     )
     sys.exit(1)

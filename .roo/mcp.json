@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "Bifrost": {
+      "url": "http://localhost:8010/chappie-md/sse"
+    }
+  }
+}

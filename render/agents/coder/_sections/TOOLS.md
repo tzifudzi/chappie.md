@@ -2,16 +2,8 @@
 
 [pre-commit](https://pre-commit.com/) manages git hooks defined in `.pre-commit-config.yaml` at the project root. Hooks run automatically on commit.
 
-### VSCode MCP Server
-
-The VS Code MCP Server extension provides file operations, symbol search, hover info, diagnostics, shell execution, and line replacements.
-
 ### Bifrost MCP
 
-Available via the VSCode MCP for refactoring support. To start:
-
-```powershell
-npx -y supergateway --sse http://localhost:8008/sse --port 8000
-```
+When using VS Code, typical workflow is to use Bifrost MCP, a VS Code extension that exposes language server features (go-to-definition, find usages, rename, completions, etc.) to AI coding assistants over HTTP/SSE. A bifrost.config.json in the project root assigns this workspace a dedicated port (e.g. 8080) so multiple VS Code windows can run Bifrost simultaneously without port conflicts. The Roo Code MCP client is configured in .roo/mcp.json to connect at <http://localhost:8009/chappie-cli/sse>. Install the Bifrost extension, open the project, and it starts automatically — no manual server launch required.
 
 See <https://github.com/biegehydra/BifrostMCP>
