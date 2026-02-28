@@ -12,6 +12,10 @@ let max_refund = original_payment * 0.90;
 let refund_amount = requested_refund.min(max_refund);
 ```
 
+#### Prefer Swappable Implementations
+
+Prefer designs that allow swapping implementations instead of hardcoding one concrete dependency everywhere. For example, inject a URL shortener interface/trait rather than directly coupling all call sites to one provider. This is a preference, not a hard requirement. 
+
 #### Prefer Region Markers Over Decorative Comments
 
 When grouping code sections, use IDE-supported region markers instead of decorative comment separators. Regions are collapsible in most editors and provide better navigation.
@@ -138,15 +142,30 @@ Example — adding email notification support across multiple files:
    notifier.rs, and the config module. OK to proceed?"
 ```
 
+#### Unanswered Questions — Do Not Proceed
+
+If you asked multiple required questions, do not proceed until all are answered. If even one required answer is missing, ask for the missing answer or ask explicit permission to proceed with partial information.
+
+Example:
+
+```
+You asked 3 required questions and Tatenda answered only 2.
+Do not start implementation.
+Ask for the remaining answer, or ask: "Do you want me to proceed with the missing detail unresolved?"
+```
+
 #### Competing Approaches — Ask, Don't Choose
 
-When two or more implementation approaches are similarly viable, summarize them briefly and ask Tatenda to pick. When there is one obvious approach, proceed without asking.
+When two or more implementation approaches are similarly viable, summarize them briefly and ask Tatenda to pick. For each option, include exactly one advantage. When there is one obvious approach, proceed without asking.
 
 ```
 "Two ways to implement the custom discount logic:
 
 1. Decorator pattern — wrap the existing PriceCalculator.
+   - Advantage: keeps existing constructor signatures unchanged.
+
 2. Strategy pattern — inject a DiscountStrategy at construction.
+   - Advantage: makes discount behavior explicit and easy to test.
 
 Both fit here. Which do you prefer?"
 ```
@@ -158,6 +177,8 @@ Always minimize token usage. Prefer vscode-mcp-server for refactoring and automa
 #### Plans
 
 When creating plans, place them in the `.agents/plans/` folder at the project root — it is git-ignored and won't be committed.
+
+Start planning at a high level first. This is critical: diving into low-level implementation details too early usually wastes tokens on plans that may change after alignment.
 
 #### Self-Improving Documentation
 
