@@ -2,7 +2,7 @@ project:
   type: default
   render:
     - agents/**/*.qmd
-  output-dir: _output
+  output-dir: _out/md
 
 format:
   md:

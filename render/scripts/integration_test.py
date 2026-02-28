@@ -14,10 +14,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-OUTPUT_DIR = Path("_output")
+OUTPUT_DIR = Path("_out/md")
+TEST_OUTPUT_DIR = Path("_out/tests")
 RULES_FILE = Path("rules/integration_rules.yaml")
-REPORT_FILE = OUTPUT_DIR / "integration_test_report.md"
-JUNIT_FILE = OUTPUT_DIR / "integration_test_report.junit.xml"
+REPORT_FILE = TEST_OUTPUT_DIR / "integration_test_report.md"
+JUNIT_FILE = TEST_OUTPUT_DIR / "integration_test_report.junit.xml"
 DEFAULT_MODEL = "openai/gpt-4o-mini"
 
 

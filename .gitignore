@@ -1,6 +1,6 @@
 .agents/plans/
 
-render/_output/
+render/_out/
 render/.quarto/
 **/*.quarto_ipynb
 
