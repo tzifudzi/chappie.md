@@ -69,6 +69,10 @@ function helperTwo() {}
 - When you make a change to a section, only run tests for that section — not the entire test suite.
 - If attempts to fix failing tests continually fail and you feel stuck, ask the human for permission to stop the task rather than continuing to spin.
 
+#### Bug Fixes — Test First
+
+When fixing a bug, use a TDD approach: write a failing test that reproduces the bug *before* writing the fix. Run the test to confirm it fails for the expected reason, then implement the fix and verify the test passes. This prevents fixing the wrong thing — if the test doesn't fail, your understanding of the bug may be wrong and you should reassess before touching production code.
+
 #### Test Philosophy
 
 Write minimal, focused tests that verify core behavior without excessive edge-case coverage.
