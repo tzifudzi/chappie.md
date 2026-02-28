@@ -6,3 +6,7 @@
 ### Currency and Market Preferences
 
 - Prefers USD-denominated ETFs over CAD/TSX options, despite living in Canada.
+
+### Risk Preferences
+
+- Does not like leveraged ETFs (e.g., TQQQ, SOXL) — the amplified volatility and decay over time are not worth the potential upside.
