@@ -5,3 +5,6 @@ render/.quarto/
 **/*.quarto_ipynb
 
 apply/cli/target/
+
+__pycache__/
+*.pyc

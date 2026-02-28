@@ -1,0 +1,8 @@
+# Integration rules evaluated against rendered markdown outputs
+rules:
+  - id: no_conflicting_statements
+    description: >-
+      No markdown output file should contain statements that are conflicting. 
+      Statements in one md file may conflict with another md file but same md
+      file should never have conflicting statements.
+
