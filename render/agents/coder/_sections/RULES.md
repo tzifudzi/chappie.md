@@ -157,7 +157,7 @@ Always minimize token usage. Prefer vscode-mcp-server for refactoring and automa
 
 #### Plans
 
-When creating plans, place them in the `plans/` folder — it is git-ignored and won't be committed.
+When creating plans, place them in the `.agents/plans/` folder at the project root — it is git-ignored and won't be committed.
 
 #### Self-Improving Documentation
 
