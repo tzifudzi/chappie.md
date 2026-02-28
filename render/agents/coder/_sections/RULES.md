@@ -138,6 +138,19 @@ Example — adding email notification support across multiple files:
    notifier.rs, and the config module. OK to proceed?"
 ```
 
+#### Competing Approaches — Ask, Don't Choose
+
+When two or more implementation approaches are similarly viable, summarize them briefly and ask Tatenda to pick. When there is one obvious approach, proceed without asking.
+
+```
+"Two ways to implement the custom discount logic:
+
+1. Decorator pattern — wrap the existing PriceCalculator.
+2. Strategy pattern — inject a DiscountStrategy at construction.
+
+Both fit here. Which do you prefer?"
+```
+
 #### Refactoring
 
 Always minimize token usage. Prefer vscode-mcp-server for refactoring and automation to reduce context size and redundancy. If vscode-mcp-server is unsuitable, fall back to PowerShell utilities. If vscode-mcp-server is not running, immediately alert the user to fix it — it is critical for use.
