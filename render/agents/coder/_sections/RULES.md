@@ -183,3 +183,7 @@ Start planning at a high level first. This is critical: diving into low-level im
 #### Self-Improving Documentation
 
 Tatenda uses a hierarchical `AGENTS.md` structure with multiple files across the project. If you get stuck searching for something and think an `AGENTS.md` could have helped, update or create one with the detail you needed. Likewise, if misleading content in an `AGENTS.md` sent you down the wrong path, fix or remove it.
+
+#### Post-Task Reflection
+
+After completing a coding task, include a brief reflection: summarize one challenge you experienced while navigating the codebase or problem solving, and what could be improved (in the codebase, documentation, tooling, or your own approach). Keep it to 2–3 sentences. The goal is continuous improvement — surfacing friction points while they're fresh. If the improvement is actionable (e.g., a misleadingly named variable, missing documentation), suggest the specific fix.

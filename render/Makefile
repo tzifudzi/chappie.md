@@ -1,4 +1,4 @@
-.PHONY: all render clean fmt fmt-check integ-test
+.PHONY: all render clean fmt fmt-check sanity integ-test
 
 all: render
 
@@ -18,5 +18,8 @@ fmt-check:
 clean:
 	python scripts/clean.py
 
-integ-test: render
-	python scripts/integration_test.py
+sanity: render
+	python scripts/sanity.py
+
+introspect: render
+	python scripts/introspect.py
