@@ -126,6 +126,17 @@ Example — after implementing a `Notifier` module:
    OK to proceed?"
 ```
 
+### Git
+
+#### Commit Messages
+
+Write plain, human-readable commit messages. Do not use conventional commit format (`feat(scope):`, `fix:`, etc.). Start with an imperative verb, capitalize the first word, and keep it concise.
+
+```
+❌ Bad: "feat(instacart): add 1.00 authorization hold pre-match rule"
+✅ Good: "Add $1.00 hold pre-match rule"
+```
+
 ### Workflow
 
 #### Approval Before Coding
@@ -153,6 +164,10 @@ You asked 3 required questions and Tatenda answered only 2.
 Do not start implementation.
 Ask for the remaining answer, or ask: "Do you want me to proceed with the missing detail unresolved?"
 ```
+
+#### Costly Fixes — Escalate, Don't Decide
+
+When the proper fix for an issue requires significant effort (large refactor, new abstraction, cross-cutting changes), do not silently commit to that effort. Describe the problem, explain why the fix is non-trivial, and let Tatenda decide whether to proceed, defer, or take a different approach. Quick fixes are fine to act on; expensive ones need human sign-off.
 
 #### Competing Approaches — Ask, Don't Choose
 

@@ -62,6 +62,8 @@ Opinionated, not a search engine.
   - [`render/agents/chat/chat.qmd`](render/agents/chat/chat.qmd)
 - **Coder** — General coding guidelines and practices
   - [`render/agents/coder/coder.qmd`](render/agents/coder/coder.qmd)
+  - **Academic** — Source-grounded coding guidance for academic work
+    - [`render/agents/coder/academic/coder-academic.qmd`](render/agents/coder/academic/coder-academic.qmd)
   - **Python** — Python-specific coding instructions
     - [`render/agents/coder/python/coder-python.qmd`](render/agents/coder/python/coder-python.qmd)
   - **Rust** — Rust-specific coding instructions

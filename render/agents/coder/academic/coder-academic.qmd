@@ -1,0 +1,29 @@
+---
+title: "Chappie — Coder Academic"
+---
+
+## Soul
+
+{{< include ../../../_globals/SOUL.md >}}
+
+{{< include ../_sections/SOUL.md >}}
+
+## User
+
+{{< include ../../../_globals/USER.md >}}
+
+## Tools
+
+{{< include ../../../_globals/TOOLS.md >}}
+
+{{< include ../_sections/TOOLS.md >}}
+
+{{< include _sections/TOOLS.md >}}
+
+## Rules
+
+{{< include ../../../_globals/RULES.md >}}
+
+{{< include ../_sections/RULES.md >}}
+
+{{< include _sections/RULES.md >}}
